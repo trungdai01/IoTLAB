@@ -1,4 +1,5 @@
 from adafruit import *
+from simple_ai import *
 
 # import paho.mqtt.client as mqtt
 # obj = Adafruit_MQTT()
@@ -43,6 +44,8 @@ def mqtt_message(client, userdata, msg):
 
 # client.loop_start()
 
+counter = 1
+
 if __name__ == "__main__":
     mqttClient = Paho_MQTT(MQTT_USERNAME, MQTT_PASSWORD)
     mqttClient.connect()
@@ -50,11 +53,19 @@ if __name__ == "__main__":
     mqttClient.subscribe(MQTT_USERNAME + "/feeds/" + MQTT_LIGHT_TOPIC)
     mqttClient.loop_start()
     while True:
-        temperature = round(random.uniform(23.0, 34.0), 2)
-        mqttClient.publish(MQTT_USERNAME + "/feeds/" + MQTT_TEMP_TOPIC, temperature)
-        print(f"Publish temperature: {temperature} degrees Celsius successfully!")
+        face = face_detector()
+        counter = counter - 1
+        if counter == 0:
+            temperature = round(random.uniform(23.0, 34.0), 2)
+            mqttClient.publish(MQTT_USERNAME + "/feeds/" + MQTT_TEMP_TOPIC, temperature)
+            print(f"Publish temperature: {temperature} degrees Celsius successfully!")
 
-        humid = round(random.uniform(0.0, 101.0), 2)
-        mqttClient.publish(MQTT_USERNAME + "/feeds/" + MQTT_HUMID_TOPIC, humid)
-        print(f"Publish temperature: {humid}% successfully!")
-        time.sleep(15)
+            humid = round(random.uniform(0.0, 101.0), 2)
+            mqttClient.publish(MQTT_USERNAME + "/feeds/" + MQTT_HUMID_TOPIC, humid)
+            print(f"Publish temperature: {humid}% successfully!")
+
+            mqttClient.publish(MQTT_USERNAME + "/feeds/" + MQTT_FACEID_TOPIC, face)
+            print(f"Publish faceid: {face} successfully!")
+
+            counter = 10
+        time.sleep(1)

@@ -6,13 +6,14 @@ import time
 
 MQTT_SERVER = "io.adafruit.com"
 MQTT_PORT = 1883
-MQTT_USERNAME = "YOUR_NAME"
-MQTT_PASSWORD = ""
+MQTT_USERNAME = "trungdai"
+MQTT_PASSWORD = "aio_ZFpe13KVJKxNxD1lVGcfh8ilKFGF"
 MQTT_TOPICS = ["fan", "light"]
 MQTT_TEMP_TOPIC = "temp"
 MQTT_HUMID_TOPIC = "humid"
 MQTT_LIGHT_TOPIC = "led"
 MQTT_FAN_TOPIC = "fan"
+MQTT_FACEID_TOPIC = "faceid"
 
 
 class Paho_MQTT:
@@ -23,7 +24,7 @@ class Paho_MQTT:
         # self.self.client.connect(MQTT_SERVER, int(MQTT_PORT), 60)
 
         self.client.on_connect = self.on_connect
-        self.client.on_disconnect = self.on_disconnect
+        # self.client.on_disconnect = self.on_disconnect
         self.client.on_message = self.on_message
         self.client.on_subscribe = self.on_subscribe
 
