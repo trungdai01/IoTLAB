@@ -37,13 +37,13 @@ def face_detector():
     confidence_score = prediction[0][index]
 
     # Print prediction and confidence score
-    print("Class:", class_name[2:], end="")
-    print("Confidence Score:", str(np.round(confidence_score * 100))[:-2], "%")
+    # print("Class:", class_name[2:], end="")
+    # print("Confidence Score:", str(np.round(confidence_score * 100))[:-2], "%")
 
     # Listen to the keyboard for presses.
     keyboard_input = cv2.waitKey(1)
 
-    # 27 is the ASCII for the esc key on your keyboard.
+    # # 27 is the ASCII for the esc key on your keyboard.
     if keyboard_input == 27:
         camera.release()
         cv2.destroyAllWindows()

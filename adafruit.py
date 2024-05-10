@@ -7,7 +7,7 @@ import time
 MQTT_SERVER = "io.adafruit.com"
 MQTT_PORT = 1883
 MQTT_USERNAME = "trungdai"
-MQTT_PASSWORD = "aio_ZFpe13KVJKxNxD1lVGcfh8ilKFGF"
+MQTT_PASSWORD = "password"
 MQTT_TOPICS = ["fan", "light"]
 MQTT_TEMP_TOPIC = "temp"
 MQTT_HUMID_TOPIC = "humid"
